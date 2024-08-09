@@ -1,0 +1,119 @@
+
+body { 
+    margin: 0; 
+    height: 100vh;
+}
+  
+canvas { 
+    display: block;
+}
+
+h1 {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    font-family: 'Montserrat';
+    font-size: 7em;
+    text-transform: uppercase;
+    width: auto;
+    line-height: .8em;
+    border: 5px solid black;
+    padding: .2em;
+  }
+.steven {
+    font-family: "Andale Mono", "AndaleMono", Andale-Mono, AndaleMono, monospace;
+    font-size: 0.8em;
+    color: #030303;
+    z-index: 565656;
+    top: 4em;
+    right: 4em;
+    position: fixed;
+    display: inline-block;
+    letter-spacing: 0.1em;
+}
+  
+
+.steven > a:hover {
+    background-color: #030303;
+    color: #fff;
+  }
+.loretta2 {
+    font-family: "Andale Mono", "AndaleMono", Andale-Mono, AndaleMono, monospace;
+    font-size: 0.8em;
+    color: #030303;
+    z-index: 565656;
+    bottom: 4em;
+    left: 50%;
+    position: fixed;
+    top:35%;
+    letter-spacing: 0.1em;
+    z-index: 565656;
+    display: inline-block;
+    width: 45%; 
+    padding: 5%;
+  }
+
+.loretta {
+    font-family: "Andale Mono", "AndaleMono", Andale-Mono, AndaleMono, monospace;
+    font-size: 0.8em;
+    color: #030303;
+    z-index: 565656;
+    bottom: 4em;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    letter-spacing: 0.1em;
+    z-index: 565656;
+    display: inline-block;
+  }
+.loretta > center > a:hover {
+    background-color: #030303;
+    color: #fff;
+    padding-top: 2px;
+    padding-bottom:2px;
+    padding-left:7px;
+    padding-right:7px;
+  }
+
+.social-links {
+    margin: 2em;
+    padding-top: 2px;
+    padding-bottom:2px;
+    padding-left:7px;
+    padding-right:7px;
+}
+.nav-links {
+    padding-left: 11px;
+    padding-right: 11px;
+}
+.nav-links {
+    margin: 9em;
+    padding-top: 2px;
+    padding-bottom:2px;
+    padding-left:7px;
+    padding-right:7px;
+}
+  
+.a-link {
+	color:  black;
+	text-decoration: none;
+}
+.a-link:hover {
+	color: white;
+	background-color: black;
+}
+.a-link:visited {
+	color: black;
+}
+#loading {
+  /* (A1) COVER FULL PAGE */
+  position: fixed;
+  top: 0; left: 0; z-index: 999;
+  width: 100vw; height: 100vh;
+
+  /* (A2) SPINNER IMAGE */
+  background-color: black;
+  background-image: url("C:/Users/juerg/Documents/GitHub/FE111/images/giflogo4.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+}
