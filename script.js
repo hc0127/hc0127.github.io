@@ -11,6 +11,9 @@ var renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setClearColor("#e5e5e5");
 renderer.setSize(window.innerWidth, window.innerHeight);
 
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+
 document.body.appendChild(renderer.domElement);
 
 window.addEventListener('resize', () => {
@@ -26,10 +29,6 @@ var material = new THREE.MeshLambertMaterial({ color: 0x000000 });
 var mesh = new THREE.Mesh(geometry, material);
 mesh.userData = { URL: "http://stackoverflow.com" };
 scene.add(mesh);
-
-
-
-
 
 var light = new THREE.PointLight(0xFFFFFF, 1, 1000)
 light.position.set(0, 0, 0);
@@ -90,6 +89,16 @@ let text1 = new THREE.Group();
 var render = function () {
     requestAnimationFrame(render);
 
+	raycaster.setFromCamera( pointer, camera );
+
+	// calculate objects intersecting the picking ray
+	const intersects = raycaster.intersectObjects( scene.children );
+
+	for ( let i = 0; i < intersects.length; i ++ ) {
+
+		intersects[ i ].object.material.color.set( 0xff0000 );
+
+	}
 
     renderer.render(scene, camera);
 }
@@ -238,33 +247,35 @@ function loader(css, js) {
 
 projector = new THREE.Projector();
 mouseVector = new THREE.Vector3();
+const mouse = new THREE.Vector2();
 
 // User interaction
-window.addEventListener('click', onMouseMove, false);
+window.addEventListener('click', onMouseClick, false);
 window.addEventListener('resize', onWindowResize, false);
 // And go!
 animate();
 
-function onMouseMove(e) {
+function onMouseClick(event) {
+    // Calculate mouse position in normalized device coordinates (-1 to +1)
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    mouseVector.x = 2 * (e.clientX / containerWidth) - 1;
-    mouseVector.y = 1 - 2 * (e.clientY / containerHeight);
+    // Update the raycaster with the camera and mouse position
+    raycaster.setFromCamera(mouse, camera);
 
-    var raycaster = projector.pickingRay(mouseVector.clone(), camera),
-        intersects = raycaster.intersectObjects(cubes.children);
+    // Calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects(scene.children);
 
+    // Handle intersections
+    if (intersects.length > 0) {
+        // Change color of the first intersected object
+        intersects[0].object.material.color.set(0xff0000);
 
-
-
-    for (var i = 0; i < intersects.length; i++) {
-        var intersection = intersects[i],
-            obj = intersection.object;
-
-        obj.material.color.setRGB(1.0 - i / intersects.length, 0, 0);
-        //obj.open(intersects[0].object.userData.URL);
+        // Optionally, perform an action, e.g., open a URL
+        if (intersects[0].object.userData.URL) {
+            window.open(intersects[0].object.userData.URL, '_blank');
+        }
     }
-
-
 }
 
 function onWindowResize(e) {
