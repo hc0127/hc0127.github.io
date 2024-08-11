@@ -273,7 +273,11 @@ function onMouseClick(event) {
 
         // Optionally, perform an action, e.g., open a URL
         if (intersects[0].object.userData.URL) {
-            window.open(intersects[0].object.userData.URL, '_blank');
+            TweenMax.to(camera.position, 3, {
+                z: 100, ease: Sine.easeInOut, onComplete: function () {
+                    window.open(intersects[0].object.userData.URL, '_blank');
+                }
+            });
         }
     }
 }
