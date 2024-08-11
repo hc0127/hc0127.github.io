@@ -275,7 +275,8 @@ function onMouseClick(event) {
         if (intersects[0].object.userData.URL) {
             TweenMax.to(camera.position, 3, {
                 z: 100, ease: Sine.easeInOut, onComplete: function () {
-                    window.open(intersects[0].object.userData.URL, '_blank');
+                    // window.open(intersects[0].object.userData.URL, '_blank');
+                    window.location.href = intersects[0].object.userData.URL
                 }
             });
         }
