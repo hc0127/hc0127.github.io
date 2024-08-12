@@ -27,7 +27,9 @@ window.addEventListener('resize', () => {
 var geometry = new THREE.BoxGeometry(100, 100, 100);
 var material = new THREE.MeshLambertMaterial({ color: 0x000000 });
 var mesh = new THREE.Mesh(geometry, material);
-mesh.userData = { URL: "http://stackoverflow.com" };
+// mesh.userData = { URL: "http://stackoverflow.com" };
+mesh.userData = { URL: "index - Copy.html" };
+
 scene.add(mesh);
 
 var light = new THREE.PointLight(0xFFFFFF, 1, 1000)
